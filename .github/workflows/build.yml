@@ -21,6 +21,11 @@ jobs:
     
     - name: Build
       run: swift build -v
+
+    - name: SwiftLint
+      uses: norio-nomura/action-swiftlint@3.2.1
+      env:
+        WORKING_DIRECTORY: TestPackage
       
     - name: Run tests
       run: swift test -v
