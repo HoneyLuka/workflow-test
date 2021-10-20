@@ -27,7 +27,9 @@ jobs:
           bundler-cache: true
 
       - name: Build documents
-        run: bundle exec jazzy
+        run: |
+          bundle install
+          bundle exec jazzy
       
       # - name: Build
       #   run: swift build -v
