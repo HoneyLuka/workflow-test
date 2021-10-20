@@ -18,15 +18,15 @@ jobs:
 
     steps:
       - name: Checkout code
-      - uses: actions/checkout@v2
+        uses: actions/checkout@v2
 
       - name: Setup ruby
-      - uses: ruby/setup-ruby@v1
+        uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
 
       - name: Build documents
-      - run: bundle exec jazzy
+        run: bundle exec jazzy
       
       # - name: Build
       #   run: swift build -v
