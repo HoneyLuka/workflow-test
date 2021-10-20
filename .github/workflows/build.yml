@@ -17,7 +17,16 @@ jobs:
         working-directory: TestPackage
 
     steps:
+      - name: Checkout code
       - uses: actions/checkout@v2
+
+      - name: Setup ruby
+      - uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+
+      - name: Build documents
+      - run: bundle exec jazzy
       
       # - name: Build
       #   run: swift build -v
@@ -25,10 +34,7 @@ jobs:
       # - name: Run tests
       #   run: swift test -v
 
-      - name: SwiftPM Jazzy Docs
-        uses: sersoft-gmbh/swifty-docs-action@v1.2.1
-        with:
-          clean: true
+
 
 
   # lint:
