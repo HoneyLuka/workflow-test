@@ -21,7 +21,7 @@ jobs:
 
       - name: debug
         run: |
-          pwd
+          ls
           mkdir -p SourceTest
           touch SourceTest/testfile.txt
 
