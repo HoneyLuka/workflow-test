@@ -71,11 +71,13 @@ jobs:
       #     cp -R .build/jazzy/* docs/current
       #     cp -R .build/jazzy/* docs/$RELEASE_VERSION
 
-      # - name: Commit
-      #   env:
-      #     RELEASE_VERSION: ${{steps.vars.outputs.tag}}
-      #   run: |
-      #     git config --global user.name 'CI'
-      #     git config --global user.email 'CI@ci.com'
-      #     git commit -am "Generate ${RELEASE_VERSION} docs automatically"
-      #     git push
+      - name: Commit
+        # env:
+        #   RELEASE_VERSION: ${{steps.vars.outputs.tag}}
+        # git commit -am "Generate ${RELEASE_VERSION} docs automatically"
+        run: |
+          git config --global user.name 'CI'
+          git config --global user.email 'CI@ci.com'
+          git commit -am "test commit"
+          git push
+        working-directory: gh-pages
