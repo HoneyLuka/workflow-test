@@ -21,9 +21,11 @@ jobs:
 
       - name: debug
         run: |
+          pwd
           ls
           mkdir -p SourceTest
           touch SourceTest/testfile.txt
+        working-directory: master
 
       # - name: Get tag
       #   id: vars
@@ -51,8 +53,9 @@ jobs:
           G_WORKSPACE: ${{github.workspace}}
         run: |
           pwd
+          ls
           mkdir -p DestTest
-          cp -R ${G_WORKSPACE}/SourceTest Dest
+          cp -R ${G_WORKSPACE}/master/SourceTest Dest
         working-directory: gh-pages
 
       # - name: Clean old doc
