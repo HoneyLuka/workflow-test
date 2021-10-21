@@ -1,0 +1,33 @@
+{
+  "warnings": [
+    {
+      "file": "/Users/runner/work/workflow-test/workflow-test/master/Sources/TestPackage/TestPackage.swift",
+      "line": 1,
+      "symbol": "TestPackage",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/workflow-test/workflow-test/master/Sources/TestPackage/TestPackage.swift",
+      "line": 2,
+      "symbol": "TestPackage.text",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/workflow-test/workflow-test/master/Sources/TestPackage/TestPackage.swift",
+      "line": 4,
+      "symbol": "TestPackage.init()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/workflow-test/workflow-test/master/Sources/TestPackage/TestPackage.swift",
+      "line": 7,
+      "symbol": "TestPackage.checkDocs()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/runner/work/workflow-test/workflow-test/master"
+}
