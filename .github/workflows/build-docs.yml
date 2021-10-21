@@ -1,57 +1,78 @@
 name: build-docs
 
 on:
-  release:
-    types: [published]
+  push:
+    branches:
+      - master
+  # release:
+  #   types: [published]
 
 jobs:
   build-docs:
     runs-on: macos-11
-    env:
-      DEVELOPER_DIR: /Applications/Xcode_13.0.app
+    # env:
+    #   DEVELOPER_DIR: /Applications/Xcode_13.0.app
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
-      - name: Get tag
-        id: vars
-        run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
-
-      - name: Setup ruby
-        uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.0.2
-          bundler-cache: true
+          path: master
 
-      - name: Build doc
+      - name: debug
         run: |
-          bundle install
-          bundle exec jazzy --output .build/jazzy
+          pwd
+          mkdir -p SourceTest
+          touch SourceTest/testfile.txt
+
+      # - name: Get tag
+      #   id: vars
+      #   run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
+
+      # - name: Setup ruby
+      #   uses: ruby/setup-ruby@v1
+      #   with:
+      #     ruby-version: 3.0.2
+      #     bundler-cache: true
+
+      # - name: Build doc
+      #   run: |
+      #     bundle install
+      #     bundle exec jazzy --output .build/jazzy
       
       - name: Checkout doc
         uses: actions/checkout@v2
         with:
           ref: gh-pages
-
-      - name: Clean old doc
-        run: |
-          rm -rf docs/current
-
-      - name: Copy new doc
+          path: gh-pages
+      
+      - name: debug
         env:
-          RELEASE_VERSION: ${{steps.vars.outputs.tag}}
+          G_WORKSPACE: ${{github.workspace}}
         run: |
-          mkdir -p docs/current
-          mkdir -p docs/$RELEASE_VERSION
-          cp -R .build/jazzy/* docs/current
-          cp -R .build/jazzy/* docs/$RELEASE_VERSION
+          pwd
+          mkdir -p DestTest
+          cp -R ${G_WORKSPACE}/SourceTest Dest
+        working-directory: gh-pages
 
-      - name: Commit
-        env:
-          RELEASE_VERSION: ${{steps.vars.outputs.tag}}
-        run: |
-          git config --global user.name 'CI'
-          git config --global user.email 'CI@ci.com'
-          git commit -am "Generate ${RELEASE_VERSION} docs automatically"
-          git push
+      # - name: Clean old doc
+      #   run: |
+      #     rm -rf docs/current
+
+      # - name: Copy new doc
+      #   env:
+      #     RELEASE_VERSION: ${{steps.vars.outputs.tag}}
+      #   run: |
+      #     mkdir -p docs/current
+      #     mkdir -p docs/$RELEASE_VERSION
+      #     cp -R .build/jazzy/* docs/current
+      #     cp -R .build/jazzy/* docs/$RELEASE_VERSION
+
+      # - name: Commit
+      #   env:
+      #     RELEASE_VERSION: ${{steps.vars.outputs.tag}}
+      #   run: |
+      #     git config --global user.name 'CI'
+      #     git config --global user.email 'CI@ci.com'
+      #     git commit -am "Generate ${RELEASE_VERSION} docs automatically"
+      #     git push
